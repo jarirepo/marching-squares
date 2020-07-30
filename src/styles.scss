@@ -10,11 +10,15 @@ body {
   color: $defaultColor;
 }
 
+h1 {
+	margin: 16px;
+}
+
 #scene {
 	cursor: grab;
 	margin: 0;
 	margin: 16px;
-	background: #000;
+	background: #fff;
 	border: 1px solid #111;
 	// border-radius: 5px;
 }
