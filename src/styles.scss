@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+
+$defaultColor: #d0d0d0;
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: "Open Sans Condensed", sans-serif;  
+	background: #000;
+  color: $defaultColor;
+}
+
+#scene {
+	cursor: grab;
+	margin: 0;
+	margin: 16px;
+	background: #000;
+	border: 1px solid #111;
+	// border-radius: 5px;
+}
