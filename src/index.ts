@@ -1,5 +1,6 @@
 import Stats from 'stats.js';
 import { Grid } from './grid';
+import { MarchingSquares } from './marching-squares';
 
 const stats = new Stats();
 stats.showPanel( 0 ); // fps
@@ -10,28 +11,38 @@ const canvas = document.getElementById('scene') as HTMLCanvasElement;
 const context = canvas.getContext('2d');
 
 // const grid = new Grid({
-// 	gridSizeX: 40,
-// 	gridSizeY: 35,
-// 	cellSize: 16
-// });
-
-// const grid = new Grid({
-// 	gridSizeX: 20,
-// 	gridSizeY: 15,
-// 	cellSize: 32
+// 	gridSizeX: 4,
+// 	gridSizeY: 3,
+// 	cellSize: 160,
+// 	randomize: true
 // });
 
 const grid = new Grid({
-	gridSizeX: 4,
-	gridSizeY: 3,
-	cellSize: 160
+	gridSizeX: 20,
+	gridSizeY: 15,
+	cellSize: 32,
+	randomize: false,
+	randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 7.5) / 15, 2) + Math.pow((j - 10) / 20, 2))
 });
 
-const alpha = .5;	// iso-value
+// const grid = new Grid({
+// 	gridSizeX: 40,
+// 	gridSizeY: 30,
+// 	cellSize: 16,
+// 	randomize: false,
+// 	randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
+// });
+
+const ms = new MarchingSquares(grid, { isoValue: .5 });
 
 function animate(time = 0) {
 	stats.begin();
+	context.fillStyle = '#fff';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	// ms.opts.isoValue = .5 *  (Math.sin(2 * Math.PI / 1e4 * time) + 1);
+	ms.update();
 	grid.show(context);
+	ms.show(context);
 	stats.end();
 	requestAnimationFrame(animate);
 }
