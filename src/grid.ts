@@ -4,7 +4,9 @@ export interface GridOptions {
 	gridSizeX: number;
 	gridSizeY: number;
 	cellSize: number;
-	randomize: boolean,
+	/** Random displacement, given as a fraction of the cell size */
+	displacement?: number;
+	randomize?: boolean,
 	randomizer?: (i: number, j: number) => number
 }
 
@@ -18,8 +20,9 @@ export class Grid {
 		let x = 0;
 		let y = 0;
 
-		// let rng = (i: number, j: number) => (i > 0 && i < this.opts.gridSizeY && j > 0 && j < this.opts.gridSizeX) ? Math.random() : 0;
-		let rng = (i: number, j: number) => Math.random();
+		let rng = (i: number, j: number) => (i > 0 && i < this.opts.gridSizeY && j > 0 && j < this.opts.gridSizeX) ? Math.random() : 0;
+		// let rng = (i: number, j: number) => Math.random();
+		
 		if (this.opts.randomizer) {
 			rng = this.opts.randomizer;
 		}
@@ -34,15 +37,16 @@ export class Grid {
 			y += this.opts.cellSize;
 		}
 
-		// Randomly move the inner vertices
+		// Randomly shift the inner vertices
 		if (this.opts.randomize) {
+			const d = this.opts.displacement || 0;
 			for (let i = 1; i < this.opts.gridSizeY; i++) {
 				for (let j = 1; j < this.opts.gridSizeX; j++) {
 					const index = j + i * (this.opts.gridSizeX + 1);
-					const rx = 2 * Math.random() - 1;
-					const ry = 2 * Math.random() - 1;
-					this.vertices[index].x += .5 * rx * this.opts.cellSize;
-					this.vertices[index].y += .5 * ry * this.opts.cellSize;
+					const dx = d * this.opts.cellSize * (2 * Math.random() - 1);
+					const dy = d * this.opts.cellSize * (2 * Math.random() - 1);
+					this.vertices[index].x += dx;
+					this.vertices[index].y += dy;
 				}
 			}
 		}

@@ -26,7 +26,7 @@ export class MarchingSquares {
 				const d = c - 1;
 				const indices = [a, b, c, d];
 				const signs = indices.map(k => this.grid.vertices[k].sign);
-				const code = signs.map(v => (v < 0) ? 0 : 1).reduce((s, v, k) => s + v * weights[k], 0);
+				const code = signs.map(v => (v <= 0) ? 0 : 1).reduce((s, v, k) => s + v * weights[k], 0);
 				// console.log(code);
 				const intersects = !((code === 0) || (code === 15));
 				if (intersects) {
