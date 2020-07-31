@@ -73,7 +73,6 @@ export class Grid {
 					this.edges.push(bottom);
 				} else {
 					const index = j + (i - 1) * this.opts.gridSizeX;
-					// bottom = this.cells[index].edges[2].swap();
 					bottom = this.cells[index].edges[2];
 				}
 
@@ -82,7 +81,6 @@ export class Grid {
 					this.edges.push(left);
 				} else {
 					const index = j - 1 + i * this.opts.gridSizeX;
-					// left = this.cells[index].edges[1].swap();
 					left = this.cells[index].edges[1];
 				}
 

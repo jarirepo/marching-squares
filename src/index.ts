@@ -36,9 +36,31 @@ const grid = new Grid({
 	displacement: 1 / 3,
 	randomize: false,
 	// randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
-	randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? Math.random() : 0
-	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
+	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? Math.random() : 0
+	randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
 });
+
+// const grid = new Grid({
+// 	gridSizeX: 80,
+// 	gridSizeY: 60,
+// 	cellSize: 8,
+// 	displacement: 1 / 3,
+// 	randomize: false,
+// 	// randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
+// 	randomizer: (i: number, j: number) => (i > 0 && i < 60 && j > 0 && j < 80) ? Math.random() : 0
+// 	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
+// });
+
+// const grid = new Grid({
+// 	gridSizeX: 160,
+// 	gridSizeY: 120,
+// 	cellSize: 4,
+// 	displacement: 1 / 3,
+// 	randomize: false,
+// 	// randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
+// 	randomizer: (i: number, j: number) => (i > 0 && i < 120 && j > 0 && j < 160) ? Math.random() : 0
+// 	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
+// });
 
 grid.addBulge(10, 20, 5);
 grid.addBulge(20, 15, 11);
@@ -56,10 +78,9 @@ function animate(time = 0) {
 	ms.update();
 
 	context.fillStyle = '#fff';
-	context.beginPath();
 	context.fillRect(0, 0, canvas.width, canvas.height);
 
-	grid.show(context);
+	// grid.show(context);
 	ms.show(context);
 
 	stats.end();

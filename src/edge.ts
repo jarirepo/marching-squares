@@ -10,18 +10,12 @@ export class Edge {
 		if (this.p0.sign === this.p1.sign) {
 			this.q = null;
 		} else {
+			const gradient = (value - this.p0.value) / (this.p1.value - this.p0.value);
 			this.q = new Vertex(
-				this.p0.x + (value - this.p0.value) * (this.p1.x - this.p0.x) / (this.p1.value - this.p0.value),
-				this.p0.y + (value - this.p0.value) * (this.p1.y - this.p0.y) / (this.p1.value - this.p0.value)
+				this.p0.x + gradient * (this.p1.x - this.p0.x),
+				this.p0.y + gradient * (this.p1.y - this.p0.y)
 			);
 		}
 		return this.q;
 	}
-
-	// public swap(): Edge {
-	// 	const temp = this.p0;
-	// 	this.p0 = this.p1;
-	// 	this.p1 = temp;
-	// 	return this;
-	// }
 }
