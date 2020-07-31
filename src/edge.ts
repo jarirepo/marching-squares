@@ -18,10 +18,10 @@ export class Edge {
 		return this.q;
 	}
 
-	public swap(): Edge {
-		const temp = this.p0;
-		this.p0 = this.p1;
-		this.p1 = temp;
-		return this;
-	}
+	// public swap(): Edge {
+	// 	const temp = this.p0;
+	// 	this.p0 = this.p1;
+	// 	this.p1 = temp;
+	// 	return this;
+	// }
 }

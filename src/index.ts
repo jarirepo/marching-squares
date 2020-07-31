@@ -36,8 +36,8 @@ const grid = new Grid({
 	displacement: 1 / 3,
 	randomize: false,
 	// randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
-	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? Math.random() : 0
-	randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
+	randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? Math.random() : 0
+	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
 });
 
 grid.addBulge(10, 20, 5);
@@ -52,7 +52,7 @@ const ms = new MarchingSquares(grid, { isoValue: .6 });
 function animate(time = 0) {
 	stats.begin();
 
-	// ms.opts.isoValue = .5 *  (Math.sin(2 * Math.PI / 1e4 * time) + 1);
+	ms.opts.isoValue = .5 *  (Math.sin(2 * Math.PI / 1e4 * time) + 1);
 	ms.update();
 
 	context.fillStyle = '#fff';
