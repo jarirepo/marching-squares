@@ -145,6 +145,7 @@ export class Grid {
 		}
 
 		// Draw vertices
+		// return;
 		context.fillStyle = '#333';
 		context.font = '18px Sans Serif'
 		
@@ -155,9 +156,32 @@ export class Grid {
 				context.arc(10 + this.vertices[index].x - .5, 490 - this.vertices[index].y - .5, 1, 0, 2 * Math.PI);
 				context.fill();
 
-				const s = (this.vertices[index].sign < 0) ? '-' : '+';
-				context.fillText(s, 10 + this.vertices[index].x, 490 - this.vertices[index].y);
+				// const s = (this.vertices[index].sign < 0) ? '-' : '+';
+				// context.beginPath();
+				// context.fillText(s, 10 + this.vertices[index].x, 490 - this.vertices[index].y);
 			}
 		}
+	}
+
+	public addBulge(nx: number, ny: number, r: number): void {
+		yLoop: for (let i = -r; i <= r; i++) {
+			const m = ny + i;
+			if (m < 0 || m > this.opts.gridSizeY)
+				continue yLoop;
+			xLoop: for (let j = -r; j <= r; j++) {
+				const n = nx + j;
+				if (n < 0 || n > this.opts.gridSizeX)
+					continue xLoop;
+				const d = Math.sqrt(i * i + j * j);
+				if (d <= r) {
+					const val = 1 - d / r;
+					const index = n + m * (this.opts.gridSizeX + 1);
+					this.vertices[index].value += val;
+				}
+			}
+		}
+	}
+
+	public addIndent(): void {
 	}
 }
