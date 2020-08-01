@@ -5,12 +5,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Marching Squares</title>
 	<link rel="stylesheet" href="./styles.scss">
+	<script src="https://www.webrtc-experiment.com/screenshot.js"></script>
 </head>
 <body>
 	<h1>Marching Squares</h1>
 	<canvas id="scene" width="660" height="500"></canvas>
-	<!-- <video></video> -->
+	<video></video>
+	<div>
+		<button id="record">Start Recording</button>
+		<button id="stop" disabled>Stop Recording</button>
+		<button id="download" disabled>Download</button>	
+	</div>
+
 	<button id="save">Save</button>
+	<div id="status"></div>
 	<div id="stats"></div>
   <script src="./index.ts"></script>
 </body>
