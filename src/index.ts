@@ -1,6 +1,8 @@
 import Stats from 'stats.js';
+import { saveAs, FileSaverOptions } from 'file-saver';
 import { Grid } from './grid';
 import { MarchingSquares } from './marching-squares';
+import { captureStream } from './video';
 
 const stats = new Stats();
 stats.showPanel( 0 ); // fps
@@ -9,6 +11,27 @@ stats.dom.style.position = 'relative';
 document.querySelector('#stats').appendChild(stats.dom);
 const canvas = document.getElementById('scene') as HTMLCanvasElement;
 const context = canvas.getContext('2d');
+const video = document.querySelector('video') as HTMLVideoElement;
+const stream = captureStream(video, 24);
+console.log('Stream:', stream);
+if (stream) {
+	video.srcObject = stream;
+}
+
+const saveButton = document.querySelector('#save') as HTMLButtonElement;
+// if (!canvas.toBlob) {
+// 	saveButton.disabled = true;
+// }
+saveButton.addEventListener('click', event => {	
+	if (canvas.toBlob) {
+		canvas.toBlob(blob => {
+			// saveAs(blob, 'marching-squares');
+			// const file = new File([blob], 'marching-squares.jpg', { type: 'image/jpeg' })
+			const file = new File([blob], 'marching-squares.png', { type: 'image/png' })
+			saveAs(file);
+		});
+	}
+});
 
 // const grid = new Grid({
 // 	gridSizeX: 4,
@@ -29,16 +52,16 @@ const context = canvas.getContext('2d');
 // 	randomizer: (i: number, j: number) => (i > 0 && i < 15 && j > 0 && j < 20) ? 1 : 0
 // });
 
-const grid = new Grid({
-	gridSizeX: 40,
-	gridSizeY: 30,
-	cellSize: 16,
-	displacement: 1 / 3,
-	randomize: false,
-	// randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
-	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? Math.random() : 0
-	randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
-});
+// const grid = new Grid({
+// 	gridSizeX: 40,
+// 	gridSizeY: 30,
+// 	cellSize: 16,
+// 	displacement: 1 / 3,
+// 	randomize: false,
+// 	// randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
+// 	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? Math.random() : 0
+// 	randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
+// });
 
 // const grid = new Grid({
 // 	gridSizeX: 80,
@@ -51,16 +74,16 @@ const grid = new Grid({
 // 	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
 // });
 
-// const grid = new Grid({
-// 	gridSizeX: 160,
-// 	gridSizeY: 120,
-// 	cellSize: 4,
-// 	displacement: 1 / 3,
-// 	randomize: false,
-// 	// randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
-// 	randomizer: (i: number, j: number) => (i > 0 && i < 120 && j > 0 && j < 160) ? Math.random() : 0
-// 	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
-// });
+const grid = new Grid({
+	gridSizeX: 160,
+	gridSizeY: 120,
+	cellSize: 4,
+	displacement: 1 / 3,
+	randomize: false,
+	// randomizer: (i: number, j: number) => 2 * Math.sqrt(Math.pow((i - 15) / 30, 2) + Math.pow((j - 20) / 40, 2))
+	randomizer: (i: number, j: number) => (i > 0 && i < 120 && j > 0 && j < 160) ? Math.random() : 0
+	// randomizer: (i: number, j: number) => (i > 0 && i < 30 && j > 0 && j < 40) ? 0 : 0
+});
 
 grid.addBulge(10, 20, 5);
 grid.addBulge(20, 15, 11);
