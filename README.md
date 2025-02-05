@@ -1,10 +1,35 @@
 # marching-squares
+Implements the [marching squares][marching-squares] algorithm (animated).
 
 <video controls autoplay muted width="500" src="screenshots/marching-squares-01.webm" type="video/webm"></video>
+
+## Features
+- Save recording
+- Save image
+
+## Serving index.html
+
+First, install Yarn package manager globally
+
+```bash
+$ npm i -g yarn
+```
+Next, install all dependencies with the command
+```bash
+$ yarn install
+```
+Now, you should be able to start the server with
+```bash
+$ yarn start
+```
+Open your browser at http://localhost:3001
+
 
 ## Examples
 <img src="screenshots/marching-squares-example-01.png">
 <img src="screenshots/marching-squares-example-02.png">
+
+[marching-squares]: https://en.wikipedia.org/wiki/Marching_squares
 
 [file-saver]: https://ghub.io/file-saver
 [recordrtc]: https://github.com/muaz-khan/RecordRTC
