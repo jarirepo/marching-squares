@@ -4,8 +4,9 @@ Implements the [marching squares][marching-squares] algorithm (animated).
 <video controls autoplay muted width="500" src="screenshots/marching-squares-01.webm" type="video/webm"></video>
 
 ## Features
+- Marching squares visualization
 - Save recording
-- Save image
+- Save canvas as image
 
 ## Serving index.html
 
@@ -22,7 +23,7 @@ Now, you should be able to start the server with
 ```bash
 $ yarn start
 ```
-Open your browser at http://localhost:3001
+Open your browser at http://localhost:3000
 
 
 ## Examples
@@ -30,7 +31,7 @@ Open your browser at http://localhost:3001
 <img src="screenshots/marching-squares-example-02.png">
 
 [marching-squares]: https://en.wikipedia.org/wiki/Marching_squares
-
+[parcel]: https://parceljs.org/
 [file-saver]: https://ghub.io/file-saver
 [recordrtc]: https://github.com/muaz-khan/RecordRTC
 [RecordRTC-web]: https://recordrtc.org

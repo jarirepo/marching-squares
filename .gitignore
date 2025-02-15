@@ -105,3 +105,6 @@ dist
 
 # Package manager lockfile (only yarn.lock is allowed)
 package-lock.json
+
+# Parcel
+.parcel-cache
