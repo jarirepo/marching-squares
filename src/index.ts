@@ -2,9 +2,9 @@ import Stats from 'stats.js';
 import { saveAs, FileSaverOptions } from 'file-saver';
 import RecordRTC from 'recordrtc';
 
-import { Grid } from './grid';
-import { MarchingSquares } from './marching-squares';
-import { captureStream } from './video';
+import { Grid } from './models/grid';
+import { MarchingSquares } from './models/marching-squares';
+import { captureStream } from './models/video';
 
 const stats = new Stats();
 stats.showPanel( 0 ); // fps

@@ -10,18 +10,15 @@ Implements the [marching squares][marching-squares] algorithm (animated).
 
 ## Serving index.html
 
-First, install Yarn package manager globally
+First, install [pnpm][pnpm] package manager
 
-```bash
-$ npm i -g yarn
-```
 Next, install all dependencies with the command
 ```bash
-$ yarn install
+$ pnpm install
 ```
 Now, you should be able to start the server with
 ```bash
-$ yarn start
+$ pnpm start
 ```
 Open your browser at http://localhost:3000
 
@@ -30,6 +27,7 @@ Open your browser at http://localhost:3000
 <img src="screenshots/marching-squares-example-01.png">
 <img src="screenshots/marching-squares-example-02.png">
 
+[pnpm]: https://pnpm.io/
 [marching-squares]: https://en.wikipedia.org/wiki/Marching_squares
 [parcel]: https://parceljs.org/
 [file-saver]: https://ghub.io/file-saver
